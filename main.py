@@ -95,7 +95,16 @@ class Human:
         print(f"Strength - {self.car.strength}", "\n")
 
     def is_alive(self):
-        pass
+        if self.gladness <= 0:
+            print("Depression...")
+            return False
+        if self.satiety < 0:
+            print("Dead...")
+            return False
+        if self.money < -500:
+            print('Bankrupt.')
+            return False
+
     def live(self, day):
         if self.is_alive() == False:
             return False
@@ -166,7 +175,7 @@ class House:
 class Job:
     def __init__(self, job_list):
         self.job = random.choice(list(job_list))
-        self.salery = job_list[self.job]['salary']
+        self.salary = job_list[self.job]['salary']
         self.gladness_less = job_list[self.job]['gladness_less']
 
 
@@ -183,3 +192,8 @@ brands_of_car = {
     "Lada":{"fuel":50, "strength":40, "consumption": 10},
     "Volvo":{"fuel":70, "strength":150, "consumption": 8},
     "Ferrari":{"fuel":80, "strength":120, "consumption": 14}}
+
+nick = Human(name="Nick")
+for day in range(1, 8):
+    if nick.live(day) == False:
+        break
